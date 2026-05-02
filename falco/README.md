@@ -1,1 +1,3 @@
-# Falco Rules\n\nRuntime detection rules for Kubernetes and container workloads.
+# Falco Rules
+
+Runtime detection rules for Kubernetes and container workloads.

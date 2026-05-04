@@ -48,15 +48,15 @@ This might close with Defense Impairment but more focus into system not security
 
 
 ## I'm picking 3 tactics.
-### Reconnaissance > Privilege Escalation > Lateral Movement
-I pick 3 of them as i think it major of attacks. You need to getting information even small or least privilege but it can be step next level to escalation and find something big and movement in the system.
-In a part of security hat, you need to give awareness to your users and everyone in org to understand the security to prevent and make it difficults for reconnaissance also, security baseline that not make it too easy to get the information into protected system. With defense in dept the escalation need some layers or approved mechanism to prevent and detection what will happend when escalation occurs. Also, trust nothing for lateral movement then need validate if they need to move somewhere and some separate of duties.
+### Reconnaissance > Initial Access > Lateral Movement
+I pick 3 of them as i think it major of attacks. You need to getting information even small or least privilege but it can be step next level to escalation with Initial Access and find something big and movement in the system.
+From defender's perspective, you need to give awareness to your users and everyone in org to understand the security to prevent and make it difficults for reconnaissance also, security baseline that not make it too easy to get the information into protected system. With defense in depth the escalation need some layers or approved mechanism to prevent and detection what will happens when escalation occurs. Also, trust nothing for lateral movement then need validate if they need to move somewhere and some separation of duties.
 
 
 ### T1595 — Active Scanning
 
 **Tactic:** Reconnaissance
-**Sub-techniques worth knowing:** T1595.001(Scanning IP Block), T1595.002(Vulnerability Scanning), T1595.003(Worldlist Scanning)
+**Sub-techniques worth knowing:** T1595.001(Scanning IP Block), T1595.002(Vulnerability Scanning), T1595.003(Wordlist Scanning)
 **What it is:** It try to probing and/or scanning to getting information the victim system then they understand what we have and how they will get into.
 **Data sources to detect it:** Monitor network data for uncommon data flows. Processes utilizing the network that do not normally have network communication or have never been seen before are suspicious.
 Monitor and analyze traffic patterns and packet inspection associated to protocol(s) that do not follow the expected protocol standards and traffic flows (e.g extraneous packets that do not belong to established flows, gratuitous or anomalous traffic patterns, anomalous syntax, or structure). Consider correlation with process monitoring and command line to detect anomalous processes execution and command line arguments associated to traffic patterns (e.g. monitor anomalies in use of files that do not normally initiate connections for respective protocol(s)).
@@ -67,7 +67,7 @@ Monitor and analyze traffic patterns and packet inspection associated to protoco
 
 **Tactic:** Reconnaissance
 **Sub-techniques worth knowing:** T1589.001(Credentials), T1589.002(Email Addresses), T1589.003(Employee Names)
-**What it is:** It getting identify of victim, it can be username, email address, or name of users. That possible use password for personal access that we can match what they are.
+**What it is:** It getting identify of victim, it can be username, email address, or name of users. Attackers gather identity info (usernames, emails, names) so they can target individuals later for phishing or credential attacks.
 **Data sources to detect it:** Monitor for suspicious network traffic that could be indicative of probing for user information, such as large/iterative quantities of authentication requests originating from a single source (especially if the source is known to be associated with an adversary/botnet). Analyzing web metadata may also reveal artifacts that can be attributed to potentially malicious activity, such as referer or user-agent string HTTP/S fields.
 **Real-world example:** FIN13 has researched employees to target for social engineering attacks.
 **My note:** Give awareness to our users that do not reuse password or share any identify and protected with MFA. Monitor the geo location that user might login and some un usual behaviors.
@@ -76,10 +76,10 @@ Monitor and analyze traffic patterns and packet inspection associated to protoco
 
 **Tactic:** Initial Access
 **Sub-techniques worth knowing:** T1566.001(Spearphishing Attachment), T1566.002(Spearphishing Link), T1566.003(Spearphishing via Service), T1566.004(Spearphishing Voice)
-**What it is:** It phishing victim with human feeling, greedy, fear, etc to force victim to do something wihtout second thought. Then with that we could reachout the system with thier identity.
+**What it is:** It phishing victim with human feeling, greedy, fear, etc to force victim to do something without second thought. Then with that we could reachout the system with thier identity.
 **Data sources to detect it:** Unusual inbound email activity where attachments or embedded URLs are delivered to users followed by execution of new processes or suspicious document behavior. Detection involves correlating email metadata, file creation, and network activity after a phishing message is received.
 **Real-world example:** AppleJeus has used spearphishing emails to distribute malicious payloads.
-**My note:** In today world, phising like scam and much more techniques it can be Sepearphising Video not just voice.
+**My note:** In today world, phishing like scam and much more techniques it can be Spearphishing Video not just voice.
 
 ### T1190 — Exploit Public-Facing Application
 
@@ -87,14 +87,14 @@ Monitor and analyze traffic patterns and packet inspection associated to protoco
 **Sub-techniques worth knowing:** No Sub Techniques
 **What it is:** Attacker using the public exploit information together with system that facing to public with Vulnerability facing then exploit the system
 **Data sources to detect it:** Adversary exploits public admin services on routers/firewalls/switches. Chain: anomalous HTTP/SNMP/SmartInstall inputs → device syslog errors/restarts → config changes/CLI spawn → egress to attacker C2.
-**Real-world example:** APT28 has used a variety of public exploits, including CVE 2020-0688 and CVE 2020-17144, to gain execution on vulnerable Microsoft Exchange; they have also conducted SQL injection attacks against external websites.
+**Real-world example:** Volt Typhoon has gained initial access through exploitation of multiple vulnerabilities in internet-facing software and appliances such as Fortinet, Ivanti (formerly Pulse Secure), NETGEAR, Citrix, and Cisco.
 **My note:** Keep monitoring the provider security advisory and study our system that hit into that advisory or not and how to apply patches or workaround to mitigate the exploit.
 
-### T1021 — Remote Service
+### T1021 — Remote Services
 
 **Tactic:** Lateral Movement
 **Sub-techniques worth knowing:** T1021.001(Remote Desktop Protocol), T1021.002(SMB/Windows Admin Shares), T1021.003(Distributed Component Object Model), T1021.004(SSH), T1021.005(VNC), T1021.006(Windows Remote Management), T1021.007(Cloud Services), T1021.008(Direct Cloud VM Connections)
-**What it is:** This also detect as legitimate movement as remote service also allow in the system. It a bit tricky to identify is this real attack or false positive detection.
+**What it is:** Attackers abuse legitimate remote services (RDP, SSH, SMB) to move between systems. Hard to detect because the protocols are legitimate — the question is whether the use is legitimate.
 **Data sources to detect it:** SSH session from new source IP followed by interactive shell or privilege escalation (e.g., sudo, su) and outbound lateral connection.
 **Real-world example:** Aquatic Panda used remote scheduled tasks to install malicious software on victim systems during lateral movement actions.
 **My note:** Identify general/ normal behavior of remote service in system. Network segmentation and monitor the anomaly network behave.
@@ -103,7 +103,7 @@ Monitor and analyze traffic patterns and packet inspection associated to protoco
 
 **Tactic:** Lateral Movement
 **Sub-techniques worth knowing:** T1550.001(Application Access Token), T1550.002(Pass the Hash), T1550.003(Pass the Ticket), T1550.004(Web Session Cookie)
-**What it is:** This also legitimate process that can lead into false positive but need to carfully monitor as it also can be lateral movement of attacker.
+**What it is:** Attackers use stolen tokens, tickets, or hashes to authenticate as another user without needing the password. Modern variant: stolen API tokens and OAuth cookies.
 **Data sources to detect it:** Use of stolen Kerberos tickets or token impersonation resulting in logon sessions from accounts without expected interactive logon events.
 **Real-world example:** FoggyWeb can allow abuse of a compromised AD FS server's SAML token.
 **My note:** Follow with provider security advisor which protocol end of life also understand own behavior with network segmentation.

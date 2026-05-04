@@ -107,3 +107,15 @@ Monitor and analyze traffic patterns and packet inspection associated to protoco
 **Data sources to detect it:** Use of stolen Kerberos tickets or token impersonation resulting in logon sessions from accounts without expected interactive logon events.
 **Real-world example:** FoggyWeb can allow abuse of a compromised AD FS server's SAML token.
 **My note:** Follow with provider security advisor which protocol end of life also understand own behavior with network segmentation.
+
+
+## Day 2 Reflection
+
+**What clicked:**
+- Tactics can be more granular more techniques, we need to update and monitor what going on in our today world with more fast changes and update but most of tactics might cover but techniques can be update quickly follow with fast changes.
+
+**What surprised me:**
+- I do not surprise in this but interesting with the covering in tactics and techniques mitre have as Framework.
+
+**What I want to learn next:**
+- As you suggest sigma rules or rules of compromise that we follow with tactics and techniques identify.

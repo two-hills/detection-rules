@@ -1,4 +1,4 @@
-# Based on MITRE ATT&CK v19 (https://attack.mitre.org/tactics/enterprise/)
+* Based on MITRE ATT&CK v19 (https://attack.mitre.org/tactics/enterprise/)
 ## 15 Enterprise Tactics
 
 ### Reconnaissance
@@ -45,3 +45,9 @@ This try to export the data out of system without permit.
 
 ### Impact
 This might close with Defense Impairment but more focus into system not security perimeters. 
+
+
+## I'm picking 3 tactics.
+### Reconnaissance > Privilege Escalation > Lateral Movement
+I pick 3 of them as i think it major of attacks. You need to getting information even small or least privilege but it can be step next level to escalation and find something big and movement in the system.
+In a part of security hat, you need to give awareness to your users and everyone in org to understand the security to prevent and make it difficults for reconnaissance also, security baseline that not make it too easy to get the information into protected system. With defense in dept the escalation need some layers or approved mechanism to prevent and detection what will happend when escalation occurs. Also, trust nothing for lateral movement then need validate if they need to move somewhere and some separate of duties.

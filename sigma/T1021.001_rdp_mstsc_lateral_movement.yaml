@@ -1,0 +1,30 @@
+title: Suspicious RDP Connection via mstsc.exe with Command Line Parameters
+id: 1b95ab8e-1b1c-48e8-9d7f-09ec4679aafe
+status: experimental
+description: "Detects RDP connections initiated via mstsc.exe with command-line parameters (/v: /u: /p:), which is unusual for human-driven use and can indicate scripted lateral movement."
+author: Teerapong Chamnankitmongkol
+date: 2026-05-06
+references:
+    - https://attack.mitre.org/techniques/T1021/001/
+tags:
+    - attack.lateral-movement
+    - attack.t1021.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_image:
+        Image|endswith: '\mstsc.exe'
+    selection_args:
+        CommandLine|contains:
+            - '/v:'
+            - '/u:'
+            - '/p:'
+    filter_legit_parent:
+        ParentImage|endswith: '\explorer.exe'
+    condition: all of selection_* and not filter_legit_parent
+falsepositives:
+    - Administrators using mstsc.exe via scripts or automation tools
+    - Jump host environments where RDP connections are launched programmatically
+    - Remote management tools that wrap mstsc.exe
+level: medium

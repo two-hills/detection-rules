@@ -55,3 +55,23 @@ The AND-combination is what makes detection precise.
 ## Rules I've written
 
 - T1021.001_rdp_mstsc_lateral_movement (May 6, 2026)
+
+
+## Day 4 Reflection
+
+**What clicked:**
+- Sigma rules maintain with huge community and we can find more examples with it.
+- Together with information provded in github and sigmahq we can getting to know how detections conditions parameter work and very well maintains.
+
+**What surprised me:**
+- Sigma have specific patterns as yml but contents dynamic adapts with granular conditions can provide. Example: filter not filter and selection with wildcard.
+- Similar with above with strong patterns but more dynamic it also make author can identify what level and progress of status to validate the impact of detections.
+
+**What was hardest:**
+- Naming convention as they have specific formats, pattern, and indent beaware with parent and child of blocks.
+
+**What I want to learn next:**
+- Interesting to know how we can use our human read into machine detection.
+
+**Personal note:**
+- Look forward to create other detections with more complicate detections and apply them in real world.

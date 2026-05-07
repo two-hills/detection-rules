@@ -7,7 +7,7 @@
 // Level: medium
 
 DeviceProcessEvents
-| where Filename == "mstsc.exe" 
+| where FileName == "mstsc.exe"     // Note: Defender XDR column names are case-sensitive (FileName, not Filename) 
    and (ProcessCommandLine contains "/v:" 
         or ProcessCommandLine contains "/u:" 
         or ProcessCommandLine contains "/p:")

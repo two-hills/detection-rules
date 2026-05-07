@@ -1,0 +1,15 @@
+# Detection: Suspicious RDP Connection via mstsc.exe with Command Line Parameters
+# Source rule: sigma/T1021.001_rdp_mstsc_lateral_movement.yaml
+# Pipeline: windows-audit (Windows Security Event 4688)
+# MITRE: T1021.001 - Remote Services: Remote Desktop Protocol
+# Author: Teerapong Chamnankitmongkol
+# Date: 2026-05-07
+# Level: medium
+# Note: SPL escapes backslashes as \\ in path patterns.
+# Note: Adjust index= and sourcetype= to match your Splunk environment naming.
+
+# Sigconverter output (search filter only):
+EventID=4688 NewProcessName="*\\mstsc.exe" CommandLine IN ("*/v:*", "*/u:*", "*/p:*") NOT ParentProcessName="*\\explorer.exe"
+
+# Production deployment example (with index/sourcetype):
+# index=wineventlog sourcetype="WinEventLog:Security" EventID=4688 NewProcessName="*\\mstsc.exe" CommandLine IN ("*/v:*", "*/u:*", "*/p:*") NOT ParentProcessName="*\\explorer.exe"

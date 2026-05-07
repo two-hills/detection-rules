@@ -1,0 +1,14 @@
+// Detection: Suspicious RDP Connection via mstsc.exe with Command Line Parameters
+// Source rule: sigma/T1021.001_rdp_mstsc_lateral_movement.yml
+// Pipeline: microsoft_xdr (Defender XDR / Sentinel)
+// MITRE: T1021.001 - Remote Services: Remote Desktop Protocol
+// Author: Teerapong Chamnankitmongkol
+// Date: 2026-05-07
+// Level: medium
+
+DeviceProcessEvents
+| where Filename == "mstsc.exe" 
+   and (ProcessCommandLine contains "/v:" 
+        or ProcessCommandLine contains "/u:" 
+        or ProcessCommandLine contains "/p:")
+   and (not(InitiatingProcessFolderPath endswith "\\explorer.exe"))

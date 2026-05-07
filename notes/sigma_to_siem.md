@@ -61,3 +61,21 @@ Detection engineers who only know one query language are vendor-locked.
 Detection engineers who write Sigma + know multiple targets are vendor-portable.
 
 This is the philosophy behind "detection-as-code" — write once, deploy many.
+
+## Day 5 Reflection
+
+**What clicked:**
+- Sigma is human readable and structure with block, sub, and child groups but as today we working with many security vendors and they have their own template to detect and working on their solution. So that converter and know the langauge we work too should be benefits.
+
+**What surprised me:**
+- Every vendors have their own architect and patterns some are neat but need carefully read cause it too neat.
+- Converter just starting point also, we need to specific pipeline to polish our output more accurate but it just starting point.
+
+**What was hardest:**
+- With help by sigma-cli do not gaurantee everything will work as magic, you have to consider with some patterns of each vendor you need to work on, researching also study will help you be lesson learn.
+
+**What I want to learn next:**
+- Deploy my rules into real environment, interest and excite how it detect together with create more own detections.
+
+**Personal note:**
+- Practices, researching, testing, can help you mitigate errors.

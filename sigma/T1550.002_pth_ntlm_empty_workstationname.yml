@@ -1,0 +1,41 @@
+title: Suspicious NTLM Network Logon with Empty or Missing WorkstationName
+id: 7b8a2c3d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
+status: experimental
+description: |
+    Detects NTLM network logons (Event ID 4624, LogonType 3) where the
+    WorkstationName field is empty, missing, or set to '-'. Legitimate
+    Windows clients always populate this field via the NTLM SSP. Empty
+    values are a fingerprint of attack tools (older Impacket, Mimikatz)
+    that craft NTLM messages directly. Filters exclude machine accounts
+    and ANONYMOUS LOGON.
+author: Teerapong Chamnankitmongkol
+date: 2026-05-08
+references:
+    - https://attack.mitre.org/techniques/T1550/002/
+tags:
+    - attack.lateral-movement
+    - attack.t1550.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection_baseline:
+        EventID: 4624
+        LogonType: 3
+        AuthenticationPackageName: 'NTLM'
+        LogonProcessName: 'NtLmSsp'
+    selection_suspicious:
+        WorkstationName:
+            - '-'
+            - ''
+            - null
+    filter_machine_accounts:
+        TargetUserName|endswith: '$'
+    filter_anonymous:
+        TargetUserName: 'ANONYMOUS LOGON'
+    condition: all of selection_* and not 1 of filter_*
+falsepositives:
+    - This rule can sometimes create false-positive when Legacy applications hard-coded to NTLM.
+    - It can create false-positive when Cross-domain trusts using NTLM fallback.
+    - This rule can create false-positive when Connections to servers by IP address (forces NTLM).
+level: medium
